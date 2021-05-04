@@ -1,4 +1,4 @@
- #include<stdlib.h>
+#include<stdlib.h>
 #include<GL/glut.h>
 
 static int rot = 0;
@@ -119,12 +119,19 @@ void display(void){
 	glPopMatrix();
 	
 	/* Prédios  ------------------------------------------------------------------ */  
-	//bloco 1
+	//prédio principal
+	//bloco 1 menor
 	glPushMatrix();
 	glTranslatef (-4.0, 0.5, 2.56);
 	glScalef (0.5, 1.0, 1.5);
 	glutWireCube (1.0);
 	glPopMatrix();
+	//teto
+	glPushMatrix();
+	glTranslatef (-4.0, 1.0, 2.56);
+	glScalef (0.6, 0.05, 1.6);
+	glutSolidCube (1.0);
+	glPopMatrix();	
 	
 	//bloco 2 maior
 	glPushMatrix();
@@ -132,13 +139,28 @@ void display(void){
 	glScalef (1.0, 1.5, 2.0);
 	glutWireCube (1.0);
 	glPopMatrix();
+	//teto
+	glPushMatrix();
+	GLUquadricObj *p4 = gluNewQuadric();
+	glTranslatef (-4.0, 1.9, 0.8);
+	glRotatef (90.0, 1.0, 0.0, 0.0);
+	glRotatef (45.0, 0.0, 0.0, 1.0);
+	gluCylinder(p4, 0.0, 1.5, 0.4, 4, 15);
+	glPopMatrix();
 	
-	//bloco 3
+	//bloco 3 menor
 	glPushMatrix();
 	glTranslatef (-4.0, 0.5, -1.0);
 	glScalef (0.5, 1.0, 1.5);
 	glutWireCube (1.0);
 	glPopMatrix();
+	//teto
+	glPushMatrix();
+	glTranslatef (-4.0, 1.0, -1.0);
+	glScalef (0.6, 0.05, 1.6);
+	glutSolidCube (1.0);
+	glPopMatrix();
+	
 	
 	//tubos dos blocos menores
 	glPushMatrix();
@@ -165,8 +187,70 @@ void display(void){
 	glutWireCube (1.0);
 	glPopMatrix();
 	
+	//prédio menor perto da antena
+	glPushMatrix();
+	glTranslatef (-4.0, 0.2, -4.5);
+	glScalef (0.3, 0.3, 0.6);
+	glutWireCube (1.0);
+	glPopMatrix();
+	// teto 
+	glPushMatrix();
+	glTranslatef (-4.0, 0.35, -4.5);
+	glScalef (0.4, 0.05, 0.7);
+	glutSolidCube (1.0);
+	glPopMatrix();
 	
-	 
+	/* grades  --------------------------------------------------------------------- */
+	//grades perto do predio menor
+	//grade 1
+	glPushMatrix();
+	glTranslatef (-4.0, 0.2, -3.8);
+	glScalef (0.05, 0.02, 0.8);
+	glutWireCube (1.0);
+	glPopMatrix();
+	
+	// barra 1
+	glPushMatrix();
+	glTranslatef (-4.0, 0.1, -3.4);
+	glScalef (0.05, 0.2, 0.05);
+	glutWireCube (1.0);
+	glPopMatrix();
+	
+	// barra 2
+	glPushMatrix();
+	glTranslatef (-4.0, 0.1, -2.5);
+	glScalef (0.05, 0.2, 0.05);
+	glutWireCube (1.0);
+	glPopMatrix();
+	
+	//grade 2
+	glPushMatrix();
+	glTranslatef (-4.0, 0.2, -2.15);
+	glScalef (0.05, 0.02, 0.8);
+	glutWireCube (1.0);
+	glPopMatrix();
+	
+	//grades perto do predioprincipal
+	//grade 1
+	glPushMatrix();
+	glTranslatef (-4.0, 0.2, 4.2);
+	glScalef (0.05, 0.02, 1.8);
+	glutWireCube (1.0);
+	glPopMatrix();
+	// barra 1
+	glPushMatrix();
+	glTranslatef (-4.0, 0.1, 4.9);
+	glScalef (0.05, 0.2, 0.05);
+	glutWireCube (1.0);
+	glPopMatrix();
+	// barra 2
+	glPushMatrix();
+	glTranslatef (-4.0, 0.1, 3.8);
+	glScalef (0.05, 0.2, 0.05);
+	glutWireCube (1.0);
+	glPopMatrix();
+	
+	
 	
 	/* Avião  -------------------------------------------------------------------- */  
 	// parte da frente(maior)
@@ -174,46 +258,82 @@ void display(void){
 	GLUquadricObj *a1 = gluNewQuadric();
 	glTranslatef (2.0, 2.0, -3.5);
 	glRotatef (45.0, 0.0, 0.0, 1.0);
-	gluCylinder(a1, 0.35, 0.2, 0.4, 4, 15);
+	gluCylinder(a1, 0.3, 0.2, 0.3, 4, 15);
 	glPopMatrix();
 	//parte da frente (menor-ponta)
 	glPushMatrix();
 	GLUquadricObj *a2 = gluNewQuadric();
-	glTranslatef (2.0, 2.0, -3.1);
+	glTranslatef (2.0, 2.0, -3.2);
 	glRotatef (45.0, 0.0, 0.0, 1.0);
-	gluCylinder(a2, 0.2, 0.0, 0.2, 4, 5);
+	gluCylinder(a2, 0.2, 0.0, 0.1, 4, 5);
 	glPopMatrix();
 	
 	// parte do meio
 	glPushMatrix();
-	glTranslatef (2.0, 2.0, -4.0);
-	glScalef (0.5, 0.5, 1.0);
-	glutSolidCube (1.0);
+	glTranslatef (2.0, 2.0, -4.1);
+	glScalef (0.4, 0.4, 1.2);
+	glutWireCube (1.0);
 	glPopMatrix();
 	
 	// parte de trás
 	glPushMatrix();
 	GLUquadricObj *a3 = gluNewQuadric();
-	glTranslatef (2.0, 2.0, -5.3);
+	glTranslatef (2.0, 2.0, -5.5);
 	glRotatef (45.0, 0.0, 0.0, 1.0);
-	gluCylinder(a3, 0.1, 0.35, 0.8, 4, 15);
+	gluCylinder(a3, 0.1, 0.3, 0.8, 4, 15);
+	glPopMatrix();
+	
+	// parte final da trazeira 
+	glPushMatrix();
+	GLUquadricObj *a4 = gluNewQuadric();
+	glTranslatef (1.98, 2.2, -5.8);
+	glRotatef (45.0, 1.0, 0.0, 1.0);
+	gluCylinder(a4, 0.02, 0.1, 0.4, 4, 15);
+	glPopMatrix();
+	// asa trazeira
+	glPushMatrix();
+	glTranslatef (2.0, 2.1, -5.7);
+	glScalef (0.5, 0.04, 0.09);
+	glutSolidCube (1.0);
 	glPopMatrix();
 	
 	// Asa direita
 	glPushMatrix();
-	glTranslatef (2.6, 2.1, -4.0);
+	glTranslatef (2.9, 2.0, -4.0);
 	glRotatef (15.0, 0.0, 1.0, 0.0);
-	glScalef (1.0, 0.06, 0.3);
+	glScalef (1.5, 0.06, 0.3);
 	glutSolidCube (1.0);
 	glPopMatrix();
 	
 	// Asa esquerda
 	glPushMatrix();
-	glTranslatef (1.6, 2.1, -4.0);
+	glTranslatef (1.1, 2.0, -4.0);
 	glRotatef (-15.0, 0.0, 1.0, 0.0);
-	glScalef (1.0, 0.06, 0.3);
+	glScalef (1.5, 0.06, 0.3);
 	glutSolidCube (1.0);
 	glPopMatrix();
+	
+	//turbina esquerda
+	glPushMatrix();
+	GLUquadricObj *a6 = gluNewQuadric();
+	glTranslatef (1.0, 1.9, -4.2);
+	glRotatef (45.0, 0.0, 0.0, 1.0);
+	gluCylinder(a6, 0.2, 0.1, 0.4, 6, 15);	
+	glPopMatrix();
+	
+	//turbina direita
+	glPushMatrix();
+	GLUquadricObj *a7 = gluNewQuadric();
+	glTranslatef (3.1, 1.9, -4.2);
+	glRotatef (45.0, 0.0, 0.0, 1.0);
+	gluCylinder(a7, 0.2, 0.1, 0.4, 6, 15);	
+	glPopMatrix();
+	
+	
+	
+	
+	
+	
 	
 	/*  -------------------------------------------------------------------- */  
 	
@@ -235,7 +355,7 @@ void reshape (int w, int h){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glTranslatef (0.0, 1.0, -10.0);		//	Ajusta a posição 
-	glRotatef (35.0, 10.0, 0.0, 0.0);
+	glRotatef (25.0, 10.0, 0.0, 0.0);
 }
 void keyboard(unsigned char key, int x, int y){
 	switch (key) {
